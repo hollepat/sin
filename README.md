@@ -2,13 +2,13 @@
 
 __Software Architecture__ - komponenty/ aplikaci či částí aplikace používající design patterny s jasným důvodemd
 
-### Hodina 2
+## Hodina 2
 
-## Monolitická aplikace
+### Monolitická aplikace
 
 - Vhodné pro měnší aplikace
 
-## Vícevrstevná architektůra
+### Vícevrstevná architektůra
 
 _BusinessObjects_ - POJOs object
 _repository, DAO_ - CRUD, získává data
@@ -18,11 +18,12 @@ cache -
 FrontEnd -
 
 
-## Load Balancer
+### Load Balancer
+`
                         worker -> database
 Client -> Dispatcher -> worker -> database
                         worker -> database
-
+`
 
 ### Spring Boot
 
