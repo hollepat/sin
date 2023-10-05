@@ -20,9 +20,7 @@ FrontEnd -
 
 ### Load Balancer
 `
-                        worker -> database
-Client -> Dispatcher -> worker -> database
-                        worker -> database
+Client -> Dispatcher -> multiple workers -> database to each worker
 `
 
 ### Spring Boot
