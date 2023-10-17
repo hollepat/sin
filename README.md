@@ -25,12 +25,19 @@ Client -> Dispatcher -> worker -> database
                         worker -> database
 `
 
-### Spring Boot
+### Spring Boot (technologie používané s tím)
 
 [Spring boot inititalizer:](https://start.spring.io)
 
 Jar a War -> Jar spíše pro serverside aplikace a War je dělán spíše pro webové aplikace. Jenom doporučené použití.
 Maven\Gradle -> package managment systems
 
+xml - data a sémantická informace
+html - struktůra jak reprezentova data
+JSON - 
 
+deploy - vezmu JAR a spustím
 
+mvn install - localne nainstaluje dependency do .m2 složky pro všechny projekty
+mvn clean - smaže dependency
+mvn package - ideální pro jenkins, stáhne dependency pro projekt
