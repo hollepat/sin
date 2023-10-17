@@ -13,9 +13,9 @@ __Software Architecture__ - komponenty/ aplikaci či částí aplikace používa
 _BusinessObjects_ - POJOs object
 _repository, DAO_ - CRUD, získává data
 _service_ - logika (visitor, adaptér, state, strategy)
-controller - přístupy, API k servisám (facade se používá mezi service a controller)
-cache - 
-FrontEnd -
+_controller_ - přístupy, API k servisám (facade se používá mezi service a controller)
+_cache_ - 
+_FrontEnd_ -
 
 
 ### Load Balancer
@@ -39,3 +39,27 @@ deploy - vezmu JAR a spustím
 mvn install - localne nainstaluje dependency do .m2 složky pro všechny projekty
 mvn clean - smaže dependency
 mvn package - ideální pro jenkins, stáhne dependency pro projekt
+
+
+### APP DESIGN
+
+obrázek s panáčkem a databází !!!!
+
+- Kde můžu použít UML?
+
+> V každý fázi vývoje. Analýza, návrh, požadavky...
+
+- Kde můžu použít anotace?
+
+> Kde se to hodí.
+
+- Kam se hodí cache?
+
+> Čím blíž ke klientovi tím míň paměti, ale větší rychlost.
+
+- Loose coupling and high collison. Antipattern -> sluníčko - všechny services závislé na jedné komponentně.
+
+- Listener je implementace design patternu observer. Observable a observer.
+
+>Listener je FE, controller nebo service.
+>Observer na nejaky separatni service.
