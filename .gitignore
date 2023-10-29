@@ -1,0 +1,33 @@
+# IntelliJ IDEA
+.idea/
+
+# Mac-specific
+.DS_Store
+
+# Compiled class file
+*.class
+
+# Logs
+*.log
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+
+# Gradle
+build/
+
+# User-specific files
+*.iml
+*.ipr
+*.iws
+.idea/workspace.xml
+.idea/tasks.xml
+
+# Exclude system-specific files
+*.DS_Store
+.DS_Store?
