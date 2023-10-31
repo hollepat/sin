@@ -39,8 +39,8 @@ public class Publisher {
     @NonNull
     private List<Book> publishedBooks;
 
-    @OneToMany(mappedBy = "publisher")
-    private List<Contract> contracts;
+    @ManyToMany
+    private List<Author> contracts;
 
     public Publisher() {
 

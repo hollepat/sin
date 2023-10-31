@@ -29,6 +29,9 @@ public class Author {
     @NonNull
     private String lastName;
 
+    @ManyToMany
+    private List<Publisher> publishers;
+
     public Author() {
 
     }

@@ -63,3 +63,12 @@ obrázek s panáčkem a databází !!!!
 
 >Listener je FE, controller nebo service.
 >Observer na nejaky separatni service.
+
+### Software Design
+
+#### ORM features
+Locking - 2 users are modifying the same object/entity
+
+#### Service Layer
+
+DPI - constructor, setter, attribute

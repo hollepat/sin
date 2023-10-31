@@ -72,22 +72,6 @@ public class MyService {
         bookRepository.deleteById(id);
     }
 
-    public List<Contract> getAllContracts() {
-        return contractRepository.findAll();
-    }
-
-    public Optional<Contract> findContractById(Long id) {
-        return contractRepository.findById(id);
-    }
-
-    public Contract addContract(Contract contract) {
-        return contractRepository.save(contract);
-    }
-
-    public void deleteContractById(Long id) {
-        contractRepository.deleteById(id);
-    }
-
     public List<Publisher> getAllPublishers() {
         return publisherRepository.findAll();
     }
