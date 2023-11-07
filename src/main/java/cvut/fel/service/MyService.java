@@ -1,5 +1,9 @@
-package cvut.fel.dao;
+package cvut.fel.service;
 import cvut.fel.model.*;
+import cvut.fel.repository.AuthorRepository;
+import cvut.fel.repository.BookRepository;
+import cvut.fel.repository.LibraryRepository;
+import cvut.fel.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +23,10 @@ public class MyService {
     private BookRepository bookRepository;
 
     @Autowired
-    private ContractRepository contractRepository;
-
-    @Autowired
     private PublisherRepository publisherRepository;
 
     public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+        return (List<Author>) authorRepository.findAll();
     }
 
     public Optional<Author> findAuthorById(Long id) {
@@ -41,7 +42,7 @@ public class MyService {
     }
 
     public List<Library> getAllLibraries() {
-        return libraryRepository.findAll();
+        return (List<Library>) libraryRepository.findAll();
     }
 
     public Optional<Library> findLibraryById(Long id) {
@@ -57,7 +58,7 @@ public class MyService {
     }
 
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        return (List<Book>) bookRepository.findAll();
     }
 
     public Optional<Book> findBookById(Long id) {
@@ -73,7 +74,7 @@ public class MyService {
     }
 
     public List<Publisher> getAllPublishers() {
-        return publisherRepository.findAll();
+        return (List<Publisher>) publisherRepository.findAll();
     }
 
     public Optional<Publisher> findPublisherById(Long id) {

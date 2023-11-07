@@ -35,4 +35,8 @@ public class Author {
     public Author() {
 
     }
+
+    public void addPublisherToContract(Publisher publisher) {
+        publishers.add(publisher);
+    }
 }

@@ -45,4 +45,8 @@ public class Publisher {
     public Publisher() {
 
     }
+
+    public void addAuthorToContract(Author author) {
+        contracts.add(author);
+    }
 }
