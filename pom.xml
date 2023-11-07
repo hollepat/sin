@@ -17,17 +17,17 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+
+		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -35,12 +35,23 @@
 			<version>3.1.4</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- jetbrains -->
+		<dependency>
 			<groupId>org.jetbrains</groupId>
 			<artifactId>annotations</artifactId>
 			<version>24.0.1</version>
 			<scope>compile</scope>
 		</dependency>
 
+		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -49,12 +60,12 @@
 		</dependency>
 
 		<!-- Jakarta EE APIs -->
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-api</artifactId>
-			<version>10.0.0</version> <!-- Use the desired version -->
-			<scope>provided</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>jakarta.platform</groupId>-->
+<!--			<artifactId>jakarta.jakartaee-api</artifactId>-->
+<!--			<version>10.0.0</version> &lt;!&ndash; Use the desired version &ndash;&gt;-->
+<!--			<scope>provided</scope>-->
+<!--		</dependency>-->
 
 <!--		<dependency>-->
 <!--			<groupId>jakarta.enterprise</groupId>-->
@@ -80,13 +91,13 @@
 <!--			<version>6.0.0.Final</version>-->
 <!--		</dependency>-->
 
-
 <!--		<dependency>-->
 <!--			<groupId>com.h2database</groupId>-->
 <!--			<artifactId>h2</artifactId>-->
 <!--			<version>1.4.200</version>-->
 <!--		</dependency>-->
 
+		<!-- postgres -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
