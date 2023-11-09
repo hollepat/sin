@@ -49,4 +49,12 @@ public class Publisher {
     public void addAuthorToContract(Author author) {
         contracts.add(author);
     }
+
+    public boolean bookIsPublished(Book book) {
+        return publishedBooks.contains(book);
+    }
+
+    public void addPublishedBook(Book book) {
+        publishedBooks.add(book);
+    }
 }

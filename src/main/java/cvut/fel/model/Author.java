@@ -36,6 +36,10 @@ public class Author {
 
     }
 
+    public boolean hasContractWithPublisher(Publisher publisher) {
+        return publishers.contains(publisher);
+    }
+
     public void addPublisherToContract(Publisher publisher) {
         publishers.add(publisher);
     }

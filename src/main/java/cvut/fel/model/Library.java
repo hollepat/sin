@@ -40,4 +40,12 @@ public class Library {
     public Library() {
 
     }
+
+    public boolean containsBook(Book book) {
+        return books.contains(book);
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
 }
