@@ -9,10 +9,15 @@ import cvut.fel.repository.BookRepository;
 import cvut.fel.repository.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class LibraryServiceImpl implements LibraryService{
 
     LibraryRepository libraryRepository;
     BookRepository bookRepository;
+
+    Logger logger = Logger.getLogger(LibraryServiceImpl.class.getName());
 
     @Autowired
     public LibraryServiceImpl(LibraryRepository libraryRepository, BookRepository bookRepository) {
@@ -25,6 +30,7 @@ public class LibraryServiceImpl implements LibraryService{
 
         // fetch book
         if (bookId == null) {
+            logger.log(Level.WARNING, "Id is not valid, bookId: " + bookId);
             throw new FieldMissingException();
         }
         Book book = bookRepository.findById(bookId)
@@ -32,6 +38,7 @@ public class LibraryServiceImpl implements LibraryService{
 
         // fetch library
         if (libraryId == null) {
+            logger.log(Level.WARNING, "Id is not valid, libraryId: " + libraryId);
             throw new FieldMissingException();
         }
         Library library = libraryRepository.findById(libraryId)
@@ -39,6 +46,7 @@ public class LibraryServiceImpl implements LibraryService{
 
         // check if book already in library
         if (library.containsBook(book)) {
+            logger.log(Level.FINE, "Book " + book.toString() + " is in the Library " + library.toString());
             throw new FieldInvalidException("BOOK_ALREADY_IN_LIBRARY");
         }
 

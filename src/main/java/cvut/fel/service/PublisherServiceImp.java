@@ -12,6 +12,8 @@ import cvut.fel.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PublisherServiceImp implements PublisherService{
 
@@ -19,6 +21,7 @@ public class PublisherServiceImp implements PublisherService{
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
 
+    Logger logger = Logger.getLogger(PublisherServiceImp.class.getName());
 
     /*
     @Autowired is a dependency injection, which creates repositories
@@ -35,6 +38,7 @@ public class PublisherServiceImp implements PublisherService{
 
         // find author
         if (authorId == null) {
+            logger.log(Level.WARNING, "Id is not valid, authorId " + authorId);
             throw new FieldMissingException();
         }
         Author author = authorRepository.findById(authorId)
@@ -42,6 +46,7 @@ public class PublisherServiceImp implements PublisherService{
 
         // find publisher
         if (publisherId == null) {
+            logger.log(Level.WARNING, "Id is not valid, publisherId " + publisherId);
             throw new FieldMissingException();
         }
         Publisher publisher = publisherRepository.findById(publisherId)
@@ -52,10 +57,14 @@ public class PublisherServiceImp implements PublisherService{
         List<Publisher> publishers = author.getPublishers();
 
         // check if already assigned
-        if (authors.contains(author))
+        if (authors.contains(author)) {
+            logger.log(Level.FINE, "Author " + author.toString() + " already has contract with publisher");
             throw new FieldInvalidException("AUTHOR_ALREADY_IN_PUBLISHERS_LIST");
-        if (publishers.contains(publisher))
+        }
+        if (publishers.contains(publisher)) {
+            logger.log(Level.FINE, "Publisher " + publisher.toString() + " already has contract with author");
             throw new FieldInvalidException("PUBLISHER_ALREADY_IN_AUTHORS_LIST");
+        }
 
         // add publisher and author
         authors.add(author);
@@ -71,6 +80,7 @@ public class PublisherServiceImp implements PublisherService{
 
         // fetch publisher
         if (publisherId == null) {
+            logger.log(Level.WARNING, "Id is not valid, id " + publisherId);
             throw new FieldMissingException();
         }
         Publisher publisher = publisherRepository.findById(publisherId)
@@ -78,6 +88,7 @@ public class PublisherServiceImp implements PublisherService{
 
         // fetch book
         if (bookId == null) {
+            logger.log(Level.WARNING, "Id is not valid, id " + bookId);
             throw new FieldMissingException();
         }
         Book book = bookRepository.findById(bookId)
@@ -85,6 +96,7 @@ public class PublisherServiceImp implements PublisherService{
 
         // validate book hasn't been published
         if (book.getPublisher() != null) {
+            logger.log(Level.FINE, "Book " + book.toString() + " has not been published");
             throw new FieldInvalidException("BOOK_ALREADY_PUBLISHED");
         }
 
