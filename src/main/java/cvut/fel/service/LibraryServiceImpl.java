@@ -9,7 +9,7 @@ import cvut.fel.repository.BookRepository;
 import cvut.fel.repository.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class LibraryServiceImpl {
+public class LibraryServiceImpl implements LibraryService{
 
     LibraryRepository libraryRepository;
     BookRepository bookRepository;

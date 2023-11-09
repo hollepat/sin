@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class PublisherServiceImp {
+public class PublisherServiceImp implements PublisherService{
 
     private final PublisherRepository publisherRepository;
     private final AuthorRepository authorRepository;
