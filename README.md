@@ -72,3 +72,8 @@ Locking - 2 users are modifying the same object/entity
 #### Service Layer
 
 DPI - constructor, setter, attribute
+
+#### Recursive types
+1. simple
+2. linear
+3. cascade
