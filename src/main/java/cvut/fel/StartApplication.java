@@ -15,9 +15,6 @@ public class  StartApplication implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(StartApplication.class);
 
-    @Autowired
-    private BookRepository bookRepository;
-
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
     }
@@ -33,16 +30,18 @@ public class  StartApplication implements CommandLineRunner {
         book2.setISBN(2L);
         Book book3 = new Book();
         book3.setISBN(3L);
-        bookRepository.save(book1);
 
-        System.out.println("\nfindAll()");
-        bookRepository.findAll().forEach(System.out::println);
 
-        System.out.println("\nfindById(1L)");
-        bookRepository.findById(1L).ifPresent(System.out::println);
+//        bookRepository.save(book1);
+//
+//        System.out.println("\nfindAll()");
+//        bookRepository.findAll().forEach(System.out::println);
+//
+//        System.out.println("\nfindById(1L)");
+//        bookRepository.findById(1L).ifPresent(System.out::println);
 
-        System.out.println("\nfindByName('Node')");
-        bookRepository.findByName("Node").forEach(System.out::println);
+//        System.out.println("\nfindByName('Node')");
+//        bookRepository.findByName("Node").forEach(System.out::println);
 
 
     }

@@ -6,9 +6,11 @@ import cvut.fel.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import cvut.fel.exception.FieldMissingException;
 import cvut.fel.exception.NotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class BookServiceImp implements BookService{
 

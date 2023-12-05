@@ -25,6 +25,10 @@ public class LoggerInterceptor implements HandlerInterceptor {
         strategy = detailedLogging ? detailedLoggingStrategy : shortLoggingStrategy;
     }
 
+    /*
+    The preHandle() method is called before the actual controller is executed. It is
+    called from FE to BE. We can use this method to intercept the request and do something.
+     */
     @Override
     public boolean preHandle(
             HttpServletRequest request,
@@ -36,6 +40,10 @@ public class LoggerInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    /*
+    The postHandle() method is called after the controller is executed. It is called
+    from BE to FE. We can use this method to log data manipulation.
+     */
     @Override
     public void postHandle(
             HttpServletRequest request,

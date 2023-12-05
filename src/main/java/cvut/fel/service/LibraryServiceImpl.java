@@ -8,10 +8,12 @@ import cvut.fel.model.Library;
 import cvut.fel.repository.BookRepository;
 import cvut.fel.repository.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Service
 public class LibraryServiceImpl implements LibraryService{
 
     LibraryRepository libraryRepository;

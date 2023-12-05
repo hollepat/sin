@@ -2,6 +2,7 @@ package cvut.fel.controller;
 
 import cvut.fel.dto.BookDTO;
 import cvut.fel.dto.DTOMapper;
+import cvut.fel.model.Book;
 import cvut.fel.service.BookServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,9 @@ public class BookController {
 
     @GetMapping("/book/{id}")
     public ResponseEntity<BookDTO> getBookById(@PathVariable Long id) {
-        return ResponseEntity.ok(dtoMapper.bookToDto(bookService.findById(id)));
+        Book book = bookService.findById(id);
+        BookDTO bookDTO = dtoMapper.bookToDto(book);
+        return ResponseEntity.ok(bookDTO);
     }
 
 }

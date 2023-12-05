@@ -19,4 +19,18 @@ public class Address {
 
     @Column(name = "streetNumber", nullable = false)
     private String streetNumber;
+
+    public Address(Address address) {
+        this.city = address.getCity();
+        this.street = address.getStreet();
+        this.streetNumber = address.getStreetNumber();
+    }
+
+    public Address() {
+
+    }
+
+    public Address clone() {
+        return new Address(this);
+    }
 }

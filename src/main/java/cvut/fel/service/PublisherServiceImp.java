@@ -10,11 +10,13 @@ import cvut.fel.repository.AuthorRepository;
 import cvut.fel.repository.BookRepository;
 import cvut.fel.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Service
 public class PublisherServiceImp implements PublisherService{
 
     private final PublisherRepository publisherRepository;

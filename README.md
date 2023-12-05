@@ -77,3 +77,7 @@ DPI - constructor, setter, attribute
 1. simple
 2. linear
 3. cascade
+
+# Ukol 5
+
+- 3 testy pro 3 services
