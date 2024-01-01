@@ -3,9 +3,7 @@ package cvut.fel.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.ToString;
+import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;

@@ -28,30 +28,30 @@ public class DemoApplication implements CommandLineRunner {
 
 		System.out.println("Hello world!");
 
-		Book book1 = new Book("Java");
-		book1.setISBN("1");
-		Book book2 = new Book("Node");
-		book2.setISBN("2");
-		Book book3 = new Book("Python");
-		book3.setISBN("3");
-
-		bookRepository.save(book1);
-		bookRepository.save(book2);
-		bookRepository.save(book3);
-
-		System.out.println("\nfindAll()");
-		bookRepository.findAll().forEach(System.out::println);
-
-		System.out.println("\nfindById(1L)");
-		bookRepository.findById(1L).ifPresent(System.out::println);
-
-		System.out.println("\nfindByName('Node')");
-		bookRepository.findByName("Node").forEach(System.out::println);
-
-		// service should be used instead of direct repository
-		// services wrap handling of data in dbs with extra logic
-		Book givenBook = bookService.findById(1L);
-		System.out.println(givenBook.toString());
+//		Book book1 = new Book("Java");
+//		book1.setISBN("1");
+//		Book book2 = new Book("Node");
+//		book2.setISBN("2");
+//		Book book3 = new Book("Python");
+//		book3.setISBN("3");
+//
+//		bookRepository.save(book1);
+//		bookRepository.save(book2);
+//		bookRepository.save(book3);
+//
+//		System.out.println("\nfindAll()");
+//		bookRepository.findAll().forEach(System.out::println);
+//
+//		System.out.println("\nfindById(1L)");
+//		bookRepository.findById(1L).ifPresent(System.out::println);
+//
+//		System.out.println("\nfindByName('Node')");
+//		bookRepository.findByName("Node").forEach(System.out::println);
+//
+//		// service should be used instead of direct repository
+//		// services wrap handling of data in dbs with extra logic
+//		Book givenBook = bookService.findById(1L);
+//		System.out.println(givenBook.toString());
 
 	}
 }

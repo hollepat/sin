@@ -2,15 +2,16 @@ package cvut.fel.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.ToString;
 
 import java.util.List;
 
 @Entity
+@Table(name = "authors")
 @Getter @Setter @ToString
 public class Author extends AbstractEntity {
 
@@ -20,12 +21,6 @@ public class Author extends AbstractEntity {
     @NotNull
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$", message = "Invalid email format")
     private String email;
-
-    @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
 
     @ManyToMany
     private List<Publisher> publishers;

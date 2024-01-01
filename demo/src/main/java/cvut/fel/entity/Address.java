@@ -1,15 +1,16 @@
 package cvut.fel.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 
 @Embeddable
-@Getter @Setter
+@Getter @Setter @ToString
 public class Address implements Serializable, Cloneable {
 
     @Column(name = "city", nullable = false)
@@ -18,7 +19,7 @@ public class Address implements Serializable, Cloneable {
     @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "streetNumber", nullable = false)
+    @Column(name = "street_number", nullable = false)
     private String streetNumber;
 
     public Address(Address address) {
@@ -29,10 +30,5 @@ public class Address implements Serializable, Cloneable {
 
     public Address() {
 
-    }
-
-    @Override
-    public Address clone() {
-        return new Address(this);
     }
 }

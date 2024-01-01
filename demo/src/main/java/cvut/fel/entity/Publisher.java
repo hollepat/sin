@@ -3,12 +3,15 @@ package cvut.fel.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import lombok.ToString;
+
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Table(name = "publishers")
+@Getter @Setter @ToString
 public class Publisher extends AbstractEntity {
 
 

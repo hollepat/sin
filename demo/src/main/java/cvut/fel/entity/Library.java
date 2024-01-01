@@ -1,14 +1,16 @@
 package cvut.fel.entity;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Table(name = "libraries")
+@Getter @Setter @ToString
 public class Library extends AbstractEntity{
 
     /*
