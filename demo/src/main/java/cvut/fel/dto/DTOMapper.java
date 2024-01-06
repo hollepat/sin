@@ -2,16 +2,19 @@ package cvut.fel.dto;
 
 import cvut.fel.entity.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface DTOMapper {
+
+    @Mapping(source = "authors", target = "authorsIds")
     BookDTO bookToDto(Book book);
 
-    Book dtoToBook(BookDTO bookDTO);
-
+    @Mapping(source="contracts", target = "contractsIds")
+    @Mapping(source="publishedBooks", target = "publishedBooksIds")
     PublisherDTO publisherToDto(Publisher publisher);
 
     static Integer mapGenre(Genre genre) {
@@ -19,10 +22,6 @@ public interface DTOMapper {
             return -1;
         }
         return genre.ordinal();
-    }
-
-    static Genre mapGenre(Integer genre) {
-        return Genre.values()[genre];
     }
 
     static List<Long> mapBooks(List<Book> books) {
@@ -38,12 +37,6 @@ public interface DTOMapper {
             return null;
         }
         return value.getId();
-    }
-
-    static Publisher mapPublisher(Long value) {
-        Publisher publisher = new Publisher();
-        publisher.setId(value);
-        return publisher;
     }
 
 }
