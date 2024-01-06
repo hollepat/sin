@@ -28,18 +28,6 @@
             </column>
         </createTable>
 
-        <!-- Foreign key to books table -->
-        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="book_id"
-                                 constraintName="fk_book_author_book"
-                                 referencedTableName="books" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
-
-        <!-- Foreign key to authors table -->
-        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="author_id"
-                                 constraintName="fk_book_author_author"
-                                 referencedTableName="authors" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
-
         <!-- Creating the authors table -->
         <createTable tableName="authors">
             <column name="id" type="BIGINT">
@@ -52,6 +40,19 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <!-- Foreign key to books table -->
+        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="book_id"
+                                 constraintName="fk_book_author_book"
+                                 referencedTableName="books" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <!-- Foreign key to authors table -->
+        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="author_id"
+                                 constraintName="fk_book_author_author"
+                                 referencedTableName="authors" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
 
         <!-- Many-to-Many relationship: authors-books -->
         <createTable tableName="author_book">
@@ -74,6 +75,7 @@
                                  constraintName="fk_author_book_book"
                                  referencedTableName="books" referencedColumnNames="id"
                                  onDelete="CASCADE"/>
+
         <!-- Creating the publishers table -->
         <createTable tableName="publishers">
             <column name="id" type="BIGINT">
