@@ -8,6 +8,7 @@ import cvut.fel.entity.Library;
 import cvut.fel.repository.BookRepository;
 import cvut.fel.repository.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Level;
@@ -27,7 +28,7 @@ public class LibraryServiceImpl implements LibraryService{
         this.bookRepository = bookRepository;
     }
 
-
+    @Cacheable(value = "librariesCache", key = "#libraryId")
     public boolean addBookToLibrary(Long bookId, Long libraryId) {
 
         // fetch book

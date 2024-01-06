@@ -8,6 +8,7 @@ import cvut.fel.exception.FieldMissingException;
 import cvut.fel.exception.NotFoundException;
 import cvut.fel.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Level;
@@ -28,6 +29,7 @@ public class BookServiceImp implements BookService {
         this.dtoMapper = dtoMapper;
     }
 
+    @Cacheable(value = "booksCache", key = "#id")
     public Book findById(Long id){
 
         if (id == null) {
@@ -38,6 +40,7 @@ public class BookServiceImp implements BookService {
                 .orElseThrow(() -> new NotFoundException("BOOK_NOT_FOUND"));
     }
 
+    @Cacheable(value = "booksCache", key = "#bookDTO.id")
     public Boolean createBook(BookDTO bookDTO) {
         if (bookDTO == null) {
             logger.log(Level.WARNING, "BookDTO is not valid");
