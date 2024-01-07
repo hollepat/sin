@@ -3,13 +3,9 @@ package cvut.fel.controller;
 import cvut.fel.dto.BookDTO;
 import cvut.fel.dto.DTOMapper;
 import cvut.fel.entity.Book;
-import cvut.fel.service.BookService;
-import org.junit.Before;
+import cvut.fel.service.BookServiceImp;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -18,7 +14,6 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -29,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class BookControllerTest extends BaseControllerTestRunner {
 
     @MockBean
-    private BookService bookServiceMock;
+    private BookServiceImp bookServiceMock;
 
     @SpyBean
     private DTOMapper dtoMapper;

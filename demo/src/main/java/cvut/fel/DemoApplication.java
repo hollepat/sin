@@ -1,7 +1,6 @@
 package cvut.fel;
 
 import cvut.fel.repository.BookRepository;
-import cvut.fel.service.BookService;
 import cvut.fel.service.BookServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,7 +25,7 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 
 		System.out.println("Hello world!");
 
@@ -53,7 +52,7 @@ public class DemoApplication implements CommandLineRunner {
 		// service should be used instead of direct repository
 		// services wrap handling of data in dbs with extra logic
 		Book givenBook = bookService.findById(1L);
-		System.out.println(givenBook.toString());
+		System.out.println(givenBook);
 
 	}
 }

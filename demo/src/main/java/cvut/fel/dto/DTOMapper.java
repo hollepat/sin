@@ -29,6 +29,9 @@ public interface DTOMapper {
     }
 
     static List<Long> mapAuthors(List<Author> authors) {
+        if (authors == null) {
+            return null;
+        }
         return authors.stream().map(Author::getId).collect(Collectors.toList());
     }
 
