@@ -3,7 +3,7 @@ package cvut.fel.controller.interceptors;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 @Component
 @Scope("singleton")

@@ -3,9 +3,7 @@ package cvut.fel.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.ToString;
+import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +18,12 @@ public class Book extends AbstractEntity{
 
     private Date dateOfPublishing;
 
+    /*
+    The @JoinTable annotation in JPA is used to define the association
+    table when mapping a many-to-many relationship between entities.
+    It specifies the name of the join table and the columns used for
+    the association.
+     */
     @ManyToMany
     @JoinTable(
         name = "book_author",   // name of the special table in the database
@@ -43,6 +47,10 @@ public class Book extends AbstractEntity{
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Library library;
+
     public Book() {
     }
 
@@ -61,11 +69,12 @@ public class Book extends AbstractEntity{
 
     @Override
     public String toString() {
+        String publisherName = publisher != null ? publisher.getName() : null;
         return "Book{" +
                 "ISBN='" + ISBN + '\'' +
                 ", dateOfPublishing=" + dateOfPublishing +
                 ", genre=" + genre +
-                ", publisher=" + publisher +
+                ", publisherName=" + publisherName +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 '}';

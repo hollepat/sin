@@ -17,6 +17,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
      * that handles operations with DBS related to user entities.
      */
 
-    List<Book> findByName(String name);
+    Book findByName(String name);
 
 }

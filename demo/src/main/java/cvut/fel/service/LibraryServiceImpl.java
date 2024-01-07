@@ -33,7 +33,7 @@ public class LibraryServiceImpl implements LibraryService{
 
         // fetch book
         if (bookId == null) {
-            logger.log(Level.WARNING, "Id is not valid, bookId: " + bookId);
+            logger.log(Level.WARNING, "Id is not valid" );
             throw new FieldMissingException();
         }
         Book book = bookRepository.findById(bookId)
@@ -41,22 +41,21 @@ public class LibraryServiceImpl implements LibraryService{
 
         // fetch library
         if (libraryId == null) {
-            logger.log(Level.WARNING, "Id is not valid, libraryId: " + libraryId);
+            logger.log(Level.WARNING, "Id is not valid");
             throw new FieldMissingException();
         }
         Library library = libraryRepository.findById(libraryId)
                 .orElseThrow(() -> new NotFoundException("LIBRARY_NOT_FOUND"));
 
         // check if book already in library
-        if (library.containsBook(book)) {
-            logger.log(Level.FINE, "Book " + book.toString() + " is in the Library " + library.toString());
+        if (book.getLibrary() != null) {
+            logger.log(Level.FINE, "Book " + book + " is in the Library " + book.getLibrary());
             throw new FieldInvalidException("BOOK_ALREADY_IN_LIBRARY");
         }
 
-        // add book to library
-        library.addBook(book);
+        book.setLibrary(library);
 
-        libraryRepository.save(library);
+        bookRepository.save(book);
 
         return true;
     }
