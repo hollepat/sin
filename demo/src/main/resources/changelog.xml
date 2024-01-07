@@ -25,17 +25,17 @@
         </sql>
     </changeSet>
 
-    <!-- Create the Adress table -->
-    <changeSet id="createAdressTable" author="hollepat">
-        <createTable tableName="adress">
-            <column name="id" type="SERIAL">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="city" type="VARCHAR(255)"/>
-            <column name="street" type="VARCHAR(255)"/>
-            <column name="street_number" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
+<!--    &lt;!&ndash; Create the Address table &ndash;&gt;-->
+<!--    <changeSet id="createAddressTable" author="hollepat">-->
+<!--        <createTable tableName="address">-->
+<!--            <column name="id" type="SERIAL">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="city" type="VARCHAR(255)"/>-->
+<!--            <column name="street" type="VARCHAR(255)"/>-->
+<!--            <column name="street_number" type="VARCHAR(255)"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
 
     <changeSet id="3242342434-7" author="hollepat">
         <!-- Creating the books table -->
@@ -50,6 +50,7 @@
             <column name="date_of_publishing" type="DATE"/>
             <column name="genre" type="genre"/>
             <column name="publisher_id" type="BIGINT"/>
+            <column name="library_id" type="BIGINT"/>
         </createTable>
 
         <!-- Creating the authors table -->
@@ -63,7 +64,32 @@
             <column name="email" type="VARCHAR(255)"/>
         </createTable>
 
+        <!-- Creating the publishers table -->
+        <createTable tableName="publishers">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <!-- Adding columns from the Address embeddable -->
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="street" type="VARCHAR(255)"/>
+            <column name="street_number" type="VARCHAR(255)"/>
+        </createTable>
 
+        <!-- Creating the libraries table -->
+        <createTable tableName="libraries">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <!-- Adding columns from the Address embeddable -->
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="street" type="VARCHAR(255)"/>
+            <column name="street_number" type="VARCHAR(255)"/>
+        </createTable>
+
+    </changeSet>
+    <changeSet id="many-to-many-21" author="hollepat">
         <!-- Many-to-Many relationship: book_author -->
         <createTable tableName="book_author">
             <column name="id" type="SERIAL">
@@ -78,75 +104,15 @@
             </column>
         </createTable>
 
-<!--        &lt;!&ndash; Creating the publishers table &ndash;&gt;-->
-<!--        <createTable tableName="publishers">-->
-<!--            <column name="id" type="BIGINT">-->
-<!--                <constraints primaryKey="true" nullable="false"/>-->
-<!--            </column>-->
-<!--            <column name="name" type="VARCHAR(255)">-->
-<!--                <constraints nullable="false"/>-->
-<!--            </column>-->
-<!--            &lt;!&ndash; Adding columns from the Address embeddable &ndash;&gt;-->
-<!--            <column name="city" type="VARCHAR(255)"/>-->
-<!--            <column name="street" type="VARCHAR(255)"/>-->
-<!--            <column name="street_number" type="VARCHAR(255)"/>-->
-<!--        </createTable>-->
+        <!-- Many-to-Many relationship: publisher-author -->
+        <createTable tableName="publisher_author">
+            <column name="publisher_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_publisher_author" references="publishers(id)"/>
+            </column>
+            <column name="author_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_author_publisher" references="books(id)"/>
+            </column>
+        </createTable>
 
-<!--        &lt;!&ndash; Many-to-Many relationship: publisher-author &ndash;&gt;-->
-<!--        <createTable tableName="publisher_author">-->
-<!--            <column name="publisher_id" type="BIGINT">-->
-<!--                <constraints references="publishers(id)"/>-->
-<!--            </column>-->
-<!--            <column name="author_id" type="BIGINT">-->
-<!--                <constraints references="books(id)"/>-->
-<!--            </column>-->
-<!--        </createTable>-->
-
-<!--        &lt;!&ndash; Foreign key to publishers table &ndash;&gt;-->
-<!--        <addForeignKeyConstraint baseTableName="publisher_author" baseColumnNames="publisher_id"-->
-<!--                                 constraintName="fk_publisher_book_publisher"-->
-<!--                                 referencedTableName="publishers" referencedColumnNames="id"-->
-<!--                                 onDelete="CASCADE"/>-->
-
-<!--        &lt;!&ndash; Foreign key to books table &ndash;&gt;-->
-<!--        <addForeignKeyConstraint baseTableName="publisher_author" baseColumnNames="book_id"-->
-<!--                                 constraintName="fk_publisher_book_book"-->
-<!--                                 referencedTableName="authors" referencedColumnNames="id"-->
-<!--                                 onDelete="CASCADE"/>-->
-<!--        &lt;!&ndash; Creating the libraries table &ndash;&gt;-->
-<!--        <createTable tableName="libraries">-->
-<!--            <column name="id" type="BIGINT">-->
-<!--                <constraints primaryKey="true" nullable="false"/>-->
-<!--            </column>-->
-<!--            <column name="name" type="VARCHAR(255)">-->
-<!--                <constraints nullable="false"/>-->
-<!--            </column>-->
-<!--            &lt;!&ndash; Adding columns from the Address embeddable &ndash;&gt;-->
-<!--            <column name="city" type="VARCHAR(255)"/>-->
-<!--            <column name="street" type="VARCHAR(255)"/>-->
-<!--            <column name="street_number" type="VARCHAR(255)"/>-->
-<!--        </createTable>-->
-
-<!--        &lt;!&ndash; Many-to-Many relationship:  library-books &ndash;&gt;-->
-<!--        <createTable tableName="library_book">-->
-<!--            <column name="library_id" type="BIGINT">-->
-<!--                <constraints references="libraries(id)"/>-->
-<!--            </column>-->
-<!--            <column name="book_id" type="BIGINT">-->
-<!--                <constraints references="books(id)"/>-->
-<!--            </column>-->
-<!--        </createTable>-->
-
-<!--        &lt;!&ndash; Foreign key to libraries table &ndash;&gt;-->
-<!--        <addForeignKeyConstraint baseTableName="library_book" baseColumnNames="library_id"-->
-<!--                                 constraintName="fk_library_book_library"-->
-<!--                                 referencedTableName="libraries" referencedColumnNames="id"-->
-<!--                                 onDelete="CASCADE"/>-->
-
-<!--        &lt;!&ndash; Foreign key to books table &ndash;&gt;-->
-<!--        <addForeignKeyConstraint baseTableName="library_book" baseColumnNames="book_id"-->
-<!--                                 constraintName="fk_library_book_book"-->
-<!--                                 referencedTableName="books" referencedColumnNames="id"-->
-<!--                                 onDelete="CASCADE"/>-->
     </changeSet>
 </databaseChangeLog>

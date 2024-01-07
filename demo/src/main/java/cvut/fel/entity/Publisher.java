@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import lombok.ToString;
 
 import java.util.List;
@@ -35,18 +34,18 @@ public class Publisher extends AbstractEntity {
     private List<Book> publishedBooks;
 
     @ManyToMany
+    @JoinTable(name = "publisher_author",
+            joinColumns = @JoinColumn(name = "publisher_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Author> contracts;
 
     public Publisher() {
 
     }
 
-    public void addAuthorToContract(Author author) {
-        contracts.add(author);
-    }
-
-    public boolean bookIsPublished(Book book) {
-        return publishedBooks.contains(book);
+    public Publisher(String name) {
+        super();
+        this.name = name;
     }
 
     public void addPublishedBook(Book book) {

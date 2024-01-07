@@ -21,7 +21,7 @@ public class Author extends AbstractEntity {
     @ManyToMany(mappedBy = "authors") // nazev vlastnosti na druhe strane vztahu
     private List<Book> books;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "contracts")
     private List<Publisher> publishers;
 
     public Author() {
