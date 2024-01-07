@@ -3,10 +3,32 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="3242342434-6" author="patrik_holler">
+    <changeSet id="100000-1" author="hollepat">
+
+        <!--    preConditions to not create genre if already exists    -->
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM pg_type WHERE typname = 'genre'
+            </sqlCheck>
+        </preConditions>
+
+        <sql>
+            <![CDATA[
+            CREATE TYPE genre AS ENUM ('SCIFI', 'FANTASY', 'DRAMA', 'COMEDY', 'THRILLER', 'HORROR', 'TRAGEDY');
+            ]]>
+        </sql>
+
+        <sql>
+            <![CDATA[
+            CREATE CAST (varchar AS genre) WITH INOUT AS IMPLICIT;
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="3242342434-7" author="hollepat">
         <!-- Creating the books table -->
         <createTable tableName="books">
-            <column name="id" type="BIGINT">
+            <column name="id" type="SERIAL">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
@@ -14,137 +36,137 @@
                 <constraints unique="true"/>
             </column>
             <column name="date_of_publishing" type="DATE"/>
-            <column name="genre" type="VARCHAR(255)"/>
+            <column name="genre" type="genre"/>
             <column name="publisher_id" type="BIGINT"/>
         </createTable>
 
-        <!-- Many-to-Many relationship: book_author -->
-        <createTable tableName="book_author">
-            <column name="book_id" type="BIGINT">
-                <constraints references="books(id)"/>
-            </column>
-            <column name="author_id" type="BIGINT">
-                <constraints references="authors(id)"/>
-            </column>
-        </createTable>
+<!--        &lt;!&ndash; Many-to-Many relationship: book_author &ndash;&gt;-->
+<!--        <createTable tableName="book_author">-->
+<!--            <column name="book_id" type="BIGINT">-->
+<!--                <constraints references="books(id)"/>-->
+<!--            </column>-->
+<!--            <column name="author_id" type="BIGINT">-->
+<!--                <constraints references="authors(id)"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
 
-        <!-- Creating the authors table -->
-        <createTable tableName="authors">
-            <column name="id" type="BIGINT">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="email" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
+<!--        &lt;!&ndash; Creating the authors table &ndash;&gt;-->
+<!--        <createTable tableName="authors">-->
+<!--            <column name="id" type="BIGINT">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="email" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
 
-        <!-- Foreign key to books table -->
-        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="book_id"
-                                 constraintName="fk_book_author_book"
-                                 referencedTableName="books" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+<!--        &lt;!&ndash; Foreign key to books table &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="book_id"-->
+<!--                                 constraintName="fk_book_author_book"-->
+<!--                                 referencedTableName="books" referencedColumnNames="id"-->
+<!--                                 onDelete="CASCADE"/>-->
 
-        <!-- Foreign key to authors table -->
-        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="author_id"
-                                 constraintName="fk_book_author_author"
-                                 referencedTableName="authors" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+<!--        &lt;!&ndash; Foreign key to authors table &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="author_id"-->
+<!--                                 constraintName="fk_book_author_author"-->
+<!--                                 referencedTableName="authors" referencedColumnNames="id"-->
+<!--                                 onDelete="CASCADE"/>-->
 
 
-        <!-- Many-to-Many relationship: authors-books -->
-        <createTable tableName="author_book">
-            <column name="author_id" type="BIGINT">
-                <constraints references="authors(id)"/>
-            </column>
-            <column name="book_id" type="BIGINT">
-                <constraints references="books(id)"/>
-            </column>
-        </createTable>
+<!--        &lt;!&ndash; Many-to-Many relationship: authors-books &ndash;&gt;-->
+<!--        <createTable tableName="author_book">-->
+<!--            <column name="author_id" type="BIGINT">-->
+<!--                <constraints references="authors(id)"/>-->
+<!--            </column>-->
+<!--            <column name="book_id" type="BIGINT">-->
+<!--                <constraints references="books(id)"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
 
-        <!-- Foreign key to authors table -->
-        <addForeignKeyConstraint baseTableName="author_book" baseColumnNames="author_id"
-                                 constraintName="fk_author_book_author"
-                                 referencedTableName="authors" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+<!--        &lt;!&ndash; Foreign key to authors table &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="author_book" baseColumnNames="author_id"-->
+<!--                                 constraintName="fk_author_book_author"-->
+<!--                                 referencedTableName="authors" referencedColumnNames="id"-->
+<!--                                 onDelete="CASCADE"/>-->
 
-        <!-- Foreign key to books table -->
-        <addForeignKeyConstraint baseTableName="author_book" baseColumnNames="book_id"
-                                 constraintName="fk_author_book_book"
-                                 referencedTableName="books" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+<!--        &lt;!&ndash; Foreign key to books table &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="author_book" baseColumnNames="book_id"-->
+<!--                                 constraintName="fk_author_book_book"-->
+<!--                                 referencedTableName="books" referencedColumnNames="id"-->
+<!--                                 onDelete="CASCADE"/>-->
 
-        <!-- Creating the publishers table -->
-        <createTable tableName="publishers">
-            <column name="id" type="BIGINT">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <!-- Adding columns from the Address embeddable -->
-            <column name="city" type="VARCHAR(255)"/>
-            <column name="street" type="VARCHAR(255)"/>
-            <column name="street_number" type="VARCHAR(255)"/>
-        </createTable>
+<!--        &lt;!&ndash; Creating the publishers table &ndash;&gt;-->
+<!--        <createTable tableName="publishers">-->
+<!--            <column name="id" type="BIGINT">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            &lt;!&ndash; Adding columns from the Address embeddable &ndash;&gt;-->
+<!--            <column name="city" type="VARCHAR(255)"/>-->
+<!--            <column name="street" type="VARCHAR(255)"/>-->
+<!--            <column name="street_number" type="VARCHAR(255)"/>-->
+<!--        </createTable>-->
 
-        <!-- Many-to-Many relationship: publisher-author -->
-        <createTable tableName="publisher_author">
-            <column name="publisher_id" type="BIGINT">
-                <constraints references="publishers(id)"/>
-            </column>
-            <column name="author_id" type="BIGINT">
-                <constraints references="books(id)"/>
-            </column>
-        </createTable>
+<!--        &lt;!&ndash; Many-to-Many relationship: publisher-author &ndash;&gt;-->
+<!--        <createTable tableName="publisher_author">-->
+<!--            <column name="publisher_id" type="BIGINT">-->
+<!--                <constraints references="publishers(id)"/>-->
+<!--            </column>-->
+<!--            <column name="author_id" type="BIGINT">-->
+<!--                <constraints references="books(id)"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
 
-        <!-- Foreign key to publishers table -->
-        <addForeignKeyConstraint baseTableName="publisher_author" baseColumnNames="publisher_id"
-                                 constraintName="fk_publisher_book_publisher"
-                                 referencedTableName="publishers" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+<!--        &lt;!&ndash; Foreign key to publishers table &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="publisher_author" baseColumnNames="publisher_id"-->
+<!--                                 constraintName="fk_publisher_book_publisher"-->
+<!--                                 referencedTableName="publishers" referencedColumnNames="id"-->
+<!--                                 onDelete="CASCADE"/>-->
 
-        <!-- Foreign key to books table -->
-        <addForeignKeyConstraint baseTableName="publisher_author" baseColumnNames="book_id"
-                                 constraintName="fk_publisher_book_book"
-                                 referencedTableName="authors" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
-        <!-- Creating the libraries table -->
-        <createTable tableName="libraries">
-            <column name="id" type="BIGINT">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <!-- Adding columns from the Address embeddable -->
-            <column name="city" type="VARCHAR(255)"/>
-            <column name="street" type="VARCHAR(255)"/>
-            <column name="street_number" type="VARCHAR(255)"/>
-        </createTable>
+<!--        &lt;!&ndash; Foreign key to books table &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="publisher_author" baseColumnNames="book_id"-->
+<!--                                 constraintName="fk_publisher_book_book"-->
+<!--                                 referencedTableName="authors" referencedColumnNames="id"-->
+<!--                                 onDelete="CASCADE"/>-->
+<!--        &lt;!&ndash; Creating the libraries table &ndash;&gt;-->
+<!--        <createTable tableName="libraries">-->
+<!--            <column name="id" type="BIGINT">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            &lt;!&ndash; Adding columns from the Address embeddable &ndash;&gt;-->
+<!--            <column name="city" type="VARCHAR(255)"/>-->
+<!--            <column name="street" type="VARCHAR(255)"/>-->
+<!--            <column name="street_number" type="VARCHAR(255)"/>-->
+<!--        </createTable>-->
 
-        <!-- Many-to-Many relationship:  library-books -->
-        <createTable tableName="library_book">
-            <column name="library_id" type="BIGINT">
-                <constraints references="libraries(id)"/>
-            </column>
-            <column name="book_id" type="BIGINT">
-                <constraints references="books(id)"/>
-            </column>
-        </createTable>
+<!--        &lt;!&ndash; Many-to-Many relationship:  library-books &ndash;&gt;-->
+<!--        <createTable tableName="library_book">-->
+<!--            <column name="library_id" type="BIGINT">-->
+<!--                <constraints references="libraries(id)"/>-->
+<!--            </column>-->
+<!--            <column name="book_id" type="BIGINT">-->
+<!--                <constraints references="books(id)"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
 
-        <!-- Foreign key to libraries table -->
-        <addForeignKeyConstraint baseTableName="library_book" baseColumnNames="library_id"
-                                 constraintName="fk_library_book_library"
-                                 referencedTableName="libraries" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+<!--        &lt;!&ndash; Foreign key to libraries table &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="library_book" baseColumnNames="library_id"-->
+<!--                                 constraintName="fk_library_book_library"-->
+<!--                                 referencedTableName="libraries" referencedColumnNames="id"-->
+<!--                                 onDelete="CASCADE"/>-->
 
-        <!-- Foreign key to books table -->
-        <addForeignKeyConstraint baseTableName="library_book" baseColumnNames="book_id"
-                                 constraintName="fk_library_book_book"
-                                 referencedTableName="books" referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+<!--        &lt;!&ndash; Foreign key to books table &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="library_book" baseColumnNames="book_id"-->
+<!--                                 constraintName="fk_library_book_book"-->
+<!--                                 referencedTableName="books" referencedColumnNames="id"-->
+<!--                                 onDelete="CASCADE"/>-->
     </changeSet>
 </databaseChangeLog>
