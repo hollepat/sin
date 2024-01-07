@@ -1,27 +1,34 @@
 package cvut.fel.database;
 
+import cvut.fel.entity.Author;
 import cvut.fel.entity.Book;
 import cvut.fel.entity.Genre;
+import cvut.fel.repository.AuthorRepository;
 import cvut.fel.repository.BookRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringRunner.class)
-@Transactional
 @SpringBootTest()
+@Transactional
 public class DatabaseTest {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private AuthorRepository authorRepository;
 
     @Test
     public void createThreeBooks() {
@@ -49,6 +56,31 @@ public class DatabaseTest {
         assertEquals(book2.getGenre(), books.get(1).getGenre());
         assertEquals(book3.getName(), books.get(2).getName());
         assertEquals(book3.getGenre(), books.get(2).getGenre());
+
+    }
+
+    @Test
+    @Commit
+    public void createBookAndAuthor() {
+
+        Author author = new Author("John");
+        author.setEmail("john@gmail.com");
+
+        List<Author> authors = new ArrayList<>();
+        authors.add(author);
+
+        Book book = new Book("JS");
+        book.setISBN("4");
+        book.setGenre(Genre.FANTASY);
+        book.setAuthors(authors);
+
+        List<Book> books = new ArrayList<>();
+        books.add(book);
+
+        author.setBooks(books);
+
+        bookRepository.save(book);
+        authorRepository.save(author);
 
     }
 }

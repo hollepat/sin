@@ -15,18 +15,22 @@ import java.util.List;
 @Getter @Setter @ToString
 public class Author extends AbstractEntity {
 
-    @ManyToMany(mappedBy = "authors") // nazev vlastnosti na druhe strane vztahu
-    private List<Book> books;
-
-    @NotNull
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$", message = "Invalid email format")
     private String email;
+
+    @ManyToMany(mappedBy = "authors") // nazev vlastnosti na druhe strane vztahu
+    private List<Book> books;
 
     @ManyToMany
     private List<Publisher> publishers;
 
     public Author() {
 
+    }
+
+    public Author(String name) {
+        super();
+        this.name = name;
     }
 
     public boolean hasContractWithPublisher(Publisher publisher) {
