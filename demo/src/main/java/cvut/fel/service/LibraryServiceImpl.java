@@ -1,5 +1,7 @@
 package cvut.fel.service;
 
+import cvut.fel.dto.DTOMapper;
+import cvut.fel.dto.LibraryDTO;
 import cvut.fel.exception.FieldInvalidException;
 import cvut.fel.exception.FieldMissingException;
 import cvut.fel.exception.NotFoundException;
@@ -20,15 +22,18 @@ public class LibraryServiceImpl implements LibraryService{
     LibraryRepository libraryRepository;
     BookRepository bookRepository;
 
+    DTOMapper dtoMapper;
+
     Logger logger = Logger.getLogger(LibraryServiceImpl.class.getName());
 
     @Autowired
-    public LibraryServiceImpl(LibraryRepository libraryRepository, BookRepository bookRepository) {
+    public LibraryServiceImpl(LibraryRepository libraryRepository, BookRepository bookRepository, DTOMapper dtoMapper) {
         this.libraryRepository = libraryRepository;
         this.bookRepository = bookRepository;
+        this.dtoMapper = dtoMapper;
     }
 
-    @Cacheable(value = "librariesCache", key = "#libraryId")
+    //@Cacheable(value = "librariesCache", key = "#libraryId")
     public boolean addBookToLibrary(Long bookId, Long libraryId) {
 
         // fetch book
@@ -57,6 +62,29 @@ public class LibraryServiceImpl implements LibraryService{
 
         bookRepository.save(book);
 
+        return true;
+    }
+
+
+    public boolean createLibrary(LibraryDTO libraryDTO) {
+
+        if (libraryDTO == null) {
+            logger.log(Level.WARNING, "LibraryDTO is null");
+            throw new FieldMissingException();
+        }
+
+        // check if library already exists
+        libraryRepository.findAll().forEach(library -> {
+            if (library.getName().equals(libraryDTO.getName())) {
+                logger.log(Level.WARNING, "Library with name " + libraryDTO.getName() + " already exists");
+                throw new FieldInvalidException("LIBRARY_ALREADY_EXISTS");
+            }
+        });
+
+        // create library
+        Library library = dtoMapper.libraryDtoToLibrary(libraryDTO);
+
+        libraryRepository.save(library);
         return true;
     }
 }

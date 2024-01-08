@@ -10,6 +10,7 @@ import cvut.fel.repository.AuthorRepository;
 import cvut.fel.repository.BookRepository;
 import cvut.fel.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -121,6 +122,7 @@ public class PublisherServiceImp implements PublisherService{
         return true;
     }
 
+    @Cacheable(value = "publishersCache", key = "#publisherId")
     public Publisher findById(Long publisherId) {
 
         if (publisherId == null) {

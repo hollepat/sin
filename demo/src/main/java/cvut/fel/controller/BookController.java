@@ -38,7 +38,7 @@ public class BookController {
     @PostMapping("/new-book")
     public ResponseEntity<Boolean> createBook(@RequestBody BookDTO bookDTO) {
         System.out.println("Creating new book: " + bookDTO.toString());
-        return ResponseEntity.ok(bookService.createBook(bookDTO)); // TODO: create function in service
+        return ResponseEntity.ok(bookService.createBook(bookDTO));
     }
 
 }

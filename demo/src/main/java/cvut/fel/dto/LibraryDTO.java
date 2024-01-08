@@ -12,8 +12,7 @@ import java.util.List;
 @Setter
 public class LibraryDTO extends AbstractDTO {
 
-    private List<Long> books; // TODO: List<Long> books/ List<BookDTO> books (not List<Book> books)
-    private Address address;
+    private AddressDTO address;
 
     public LibraryDTO() {
     }

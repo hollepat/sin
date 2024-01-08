@@ -7,5 +7,15 @@ public enum Genre {
     COMEDY,
     THRILLER,
     HORROR,
-    TRAGEDY
+    TRAGEDY;
+
+
+
+    public static Genre getEnum(String value) {
+        for(Genre v : values())
+            if(v.toString().equalsIgnoreCase(value)) return v;
+        throw new IllegalArgumentException();
+    }
+
+
 }

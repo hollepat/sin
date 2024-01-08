@@ -16,6 +16,7 @@ public class Book extends AbstractEntity{
     @Column(unique = true)
     private String ISBN;
 
+    @Column
     private Date dateOfPublishing;
 
     /*

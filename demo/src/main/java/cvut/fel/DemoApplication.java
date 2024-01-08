@@ -1,5 +1,9 @@
 package cvut.fel;
 
+import cvut.fel.entity.Genre;
+import cvut.fel.entity.Library;
+import cvut.fel.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +15,8 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableCaching
 public class DemoApplication implements CommandLineRunner {
 
+	@Autowired
+	private BookRepository bookRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -21,18 +27,12 @@ public class DemoApplication implements CommandLineRunner {
 
 		System.out.println("Hello world!");
 
+		Book book = new Book("Harry Potter");
+		book.setISBN("234234234");
+		book.setPublisher(null);
+		book.setGenre(Genre.FANTASY);
 
-
-//		System.out.println("\nfindById(1L)");
-//		bookRepository.findById(1L).ifPresent(System.out::println);
-//
-//		System.out.println("\nfindByName('Node')");
-//		bookRepository.findByName("Node").forEach(System.out::println);
-
-//		 service should be used instead of direct repository
-//		 services wrap handling of data in dbs with extra logic
-//		Book givenBook = bookService.findById(1L);
-//		System.out.println(givenBook.toString());
+		bookRepository.save(book);
 
 	}
 }

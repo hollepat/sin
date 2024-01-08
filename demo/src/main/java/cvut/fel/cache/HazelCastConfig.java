@@ -23,6 +23,12 @@ public class HazelCastConfig {
         libraryMapConfig.setTimeToLiveSeconds(600); // TTL of 10 minutes
         config.getMapConfigs().put("libraryCache", libraryMapConfig);
 
+        // publisher cache
+        MapConfig publisherMapConfig = new MapConfig();
+        publisherMapConfig.setName("publisherCache");
+        publisherMapConfig.setTimeToLiveSeconds(600); // TTL of 10 minutes
+        config.getMapConfigs().put("publisherCache", publisherMapConfig);
+
         return config;
     }
 }
