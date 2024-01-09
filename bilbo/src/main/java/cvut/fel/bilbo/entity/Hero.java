@@ -15,6 +15,7 @@ public class Hero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "hero_name", unique = true)
     private String name;
 
     @Enumerated(EnumType.STRING)
