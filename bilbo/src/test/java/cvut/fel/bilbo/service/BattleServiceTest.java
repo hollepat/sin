@@ -3,7 +3,6 @@ package cvut.fel.bilbo.service;
 import cvut.fel.bilbo.entity.Belief;
 import cvut.fel.bilbo.entity.Group;
 import cvut.fel.bilbo.entity.Hero;
-import cvut.fel.bilbo.exception.FieldMissingException;
 import cvut.fel.bilbo.exception.NotFoundException;
 import cvut.fel.bilbo.repository.BattleRepository;
 import cvut.fel.bilbo.repository.GroupRepository;
@@ -77,7 +76,7 @@ public class BattleServiceTest {
 
 
         // Act
-        Group result = battleService.fight(groupA.getId(), 3L, 1);
+        battleService.fight(groupA.getId(), 3L, 1);
 
         fail("Exception not thrown.");
     }

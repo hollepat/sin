@@ -1,0 +1,456 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="UTF-8"/>
+      <title>SpotBugs Report</title>
+      <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+		</style>
+   </head>
+   <body>
+      <h1>SpotBugs Report</h1>
+      <p>Produced using <a href="https://spotbugs.github.io">SpotBugs</a>4.7.3.</p>
+      <p>Project: 
+			bilbo[bilbo]</p>
+      <h2>Metrics</h2>
+      <p>668 lines of code analyzed,
+	in 36 classes, 
+	in 10 packages.</p>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Metric</th>
+            <th align="right">Total</th>
+            <th align="right">Density*</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>High Priority Warnings</td>
+            <td align="right"/>
+            <td align="right">NaN</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Medium Priority Warnings</td>
+            <td align="right">14</td>
+            <td align="right">20.96</td>
+         </tr>
+         <tr class="$totalClass">
+            <td>
+               <b>Total Warnings</b>
+            </td>
+            <td align="right">
+               <b>14</b>
+            </td>
+            <td align="right">
+               <b>20.96</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Summary</h2>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Warning Type</th>
+            <th align="right">Number</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+            </td>
+            <td align="right">1</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+            </td>
+            <td align="right">9</td>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+            </td>
+            <td align="right">3</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+            </td>
+            <td align="right">1</td>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <b>Total</b>
+            </td>
+            <td align="right">
+               <b>14</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h1>Warnings</h1>
+      <p>Click on each warning link to see a full description of the issue, and
+	    details of how to resolve it.</p>
+      <h2>
+         <a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#NP_NULL_ON_SOME_PATH">Possible null pointer dereference</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>Possible null pointer dereference of e in cvut.fel.bilbo.controller.interceptors.DetailedLoggingStrategy.getParameters(HttpServletRequest)<br/>
+                  <br/>
+                  <br/>In file DetailedLoggingStrategy.java DetailedLoggingStrategy.java,
+					
+						line 30 27<br/>In class cvut.fel.bilbo.controller.interceptors.DetailedLoggingStrategy<br/>In method cvut.fel.bilbo.controller.interceptors.DetailedLoggingStrategy.getParameters(HttpServletRequest)<br/>Value loaded from e<br/>Dereferenced at DetailedLoggingStrategy.java:[line 30]<br/>Known null at DetailedLoggingStrategy.java:[line 27]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>cvut.fel.bilbo.entity.Battle.getGroupA() may expose internal representation by returning Battle.groupA<br/>
+                  <br/>
+                  <br/>In file Battle.java Battle.java,
+					
+						line 20 20<br/>In class cvut.fel.bilbo.entity.Battle<br/>In method cvut.fel.bilbo.entity.Battle.getGroupA()<br/>Field cvut.fel.bilbo.entity.Battle.groupA<br/>At Battle.java:[line 20]<br/>At Battle.java:[line 20]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>cvut.fel.bilbo.entity.Battle.getGroupB() may expose internal representation by returning Battle.groupB<br/>
+                  <br/>
+                  <br/>In file Battle.java Battle.java,
+					
+						line 24 24<br/>In class cvut.fel.bilbo.entity.Battle<br/>In method cvut.fel.bilbo.entity.Battle.getGroupB()<br/>Field cvut.fel.bilbo.entity.Battle.groupB<br/>At Battle.java:[line 24]<br/>At Battle.java:[line 24]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>cvut.fel.bilbo.entity.Group.getHeroes() may expose internal representation by returning Group.heroes<br/>
+                  <br/>
+                  <br/>In file Group.java Group.java,
+					
+						line 27 27<br/>In class cvut.fel.bilbo.entity.Group<br/>In method cvut.fel.bilbo.entity.Group.getHeroes()<br/>Field cvut.fel.bilbo.entity.Group.heroes<br/>At Group.java:[line 27]<br/>At Group.java:[line 27]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>cvut.fel.bilbo.entity.Hero.getGroup() may expose internal representation by returning Hero.group<br/>
+                  <br/>
+                  <br/>In file Hero.java Hero.java,
+					
+						line 35 35<br/>In class cvut.fel.bilbo.entity.Hero<br/>In method cvut.fel.bilbo.entity.Hero.getGroup()<br/>Field cvut.fel.bilbo.entity.Hero.group<br/>At Hero.java:[line 35]<br/>At Hero.java:[line 35]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>new cvut.fel.bilbo.controller.HeroController(HeroServiceImp) may expose internal representation by storing an externally mutable object into HeroController.heroServiceImp<br/>
+                  <br/>
+                  <br/>In file HeroController.java HeroController.java,
+					
+						line 19 19<br/>In class cvut.fel.bilbo.controller.HeroController<br/>In method new cvut.fel.bilbo.controller.HeroController(HeroServiceImp)<br/>Field cvut.fel.bilbo.controller.HeroController.heroServiceImp<br/>Local variable named heroServiceImp<br/>At HeroController.java:[line 19]<br/>At HeroController.java:[line 19]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>cvut.fel.bilbo.entity.Battle.setGroupA(Group) may expose internal representation by storing an externally mutable object into Battle.groupA<br/>
+                  <br/>
+                  <br/>In file Battle.java Battle.java,
+					
+						line 11 11<br/>In class cvut.fel.bilbo.entity.Battle<br/>In method cvut.fel.bilbo.entity.Battle.setGroupA(Group)<br/>Field cvut.fel.bilbo.entity.Battle.groupA<br/>Local variable named groupA<br/>At Battle.java:[line 11]<br/>At Battle.java:[line 11]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>cvut.fel.bilbo.entity.Battle.setGroupB(Group) may expose internal representation by storing an externally mutable object into Battle.groupB<br/>
+                  <br/>
+                  <br/>In file Battle.java Battle.java,
+					
+						line 11 11<br/>In class cvut.fel.bilbo.entity.Battle<br/>In method cvut.fel.bilbo.entity.Battle.setGroupB(Group)<br/>Field cvut.fel.bilbo.entity.Battle.groupB<br/>Local variable named groupB<br/>At Battle.java:[line 11]<br/>At Battle.java:[line 11]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>cvut.fel.bilbo.entity.Group.setHeroes(List) may expose internal representation by storing an externally mutable object into Group.heroes<br/>
+                  <br/>
+                  <br/>In file Group.java Group.java,
+					
+						line 13 13<br/>In class cvut.fel.bilbo.entity.Group<br/>In method cvut.fel.bilbo.entity.Group.setHeroes(List)<br/>Field cvut.fel.bilbo.entity.Group.heroes<br/>Local variable named heroes<br/>At Group.java:[line 13]<br/>At Group.java:[line 13]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>cvut.fel.bilbo.entity.Hero.setGroup(Group) may expose internal representation by storing an externally mutable object into Hero.group<br/>
+                  <br/>
+                  <br/>In file Hero.java Hero.java,
+					
+						line 11 11<br/>In class cvut.fel.bilbo.entity.Hero<br/>In method cvut.fel.bilbo.entity.Hero.setGroup(Group)<br/>Field cvut.fel.bilbo.entity.Hero.group<br/>Local variable named group<br/>At Hero.java:[line 11]<br/>At Hero.java:[line 11]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="Warnings_PERFORMANCE">Performance Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#URF_UNREAD_FIELD">Unread field</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>Unread field: cvut.fel.bilbo.dto.GroupDTO.groupBelief<br/>
+                  <br/>
+                  <br/>In file GroupDTO.java,
+					
+						line 19<br/>In class cvut.fel.bilbo.dto.GroupDTO<br/>Field cvut.fel.bilbo.dto.GroupDTO.groupBelief<br/>At GroupDTO.java:[line 19]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#URF_UNREAD_FIELD">Unread field</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>Unread field: cvut.fel.bilbo.dto.GroupDTO.heroes<br/>
+                  <br/>
+                  <br/>In file GroupDTO.java,
+					
+						line 20<br/>In class cvut.fel.bilbo.dto.GroupDTO<br/>Field cvut.fel.bilbo.dto.GroupDTO.heroes<br/>At GroupDTO.java:[line 20]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#URF_UNREAD_FIELD">Unread field</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>Unread field: cvut.fel.bilbo.dto.GroupDTO.name<br/>
+                  <br/>
+                  <br/>In file GroupDTO.java,
+					
+						line 18<br/>In class cvut.fel.bilbo.dto.GroupDTO<br/>Field cvut.fel.bilbo.dto.GroupDTO.name<br/>At GroupDTO.java:[line 18]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="Warnings_STYLE">Dodgy code Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>Dead store to result in cvut.fel.bilbo.service.BattleServiceTest.fightErrorWrongId()<br/>
+                  <br/>
+                  <br/>In file BattleServiceTest.java BattleServiceTest.java,
+					
+						line 80 80<br/>In class cvut.fel.bilbo.service.BattleServiceTest<br/>In method cvut.fel.bilbo.service.BattleServiceTest.fightErrorWrongId()<br/>Local variable named result<br/>At BattleServiceTest.java:[line 80]<br/>At BattleServiceTest.java:[line 80]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h1>
+         <a name="Details">Warning Types</a>
+      </h1>
+      <h2>
+         <a name="DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+      </h2>
+
+<p>
+This instruction assigns a value to a local variable,
+but the value is not read or used in any subsequent instruction.
+Often, this indicates an error, because the value computed is never
+used.
+</p>
+<p>
+Note that Sun's javac compiler often generates dead stores for
+final local variables. Because SpotBugs is a bytecode-based tool,
+there is no easy way to eliminate these false positives.
+</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+      </h2>
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+      </h2>
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="NP_NULL_ON_SOME_PATH">Possible null pointer dereference</a>
+      </h2>
+
+<p> There is a branch of statement that, <em>if executed,</em>  guarantees that
+a null value will be dereferenced, which
+would generate a <code>NullPointerException</code> when the code is executed.
+Of course, the problem might be that the branch or statement is infeasible and that
+the null pointer exception cannot ever be executed; deciding that is beyond the ability of SpotBugs.
+</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="URF_UNREAD_FIELD">Unread field</a>
+      </h2>
+
+  <p> This field is never read.&nbsp; Consider removing it from the class.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+   </body>
+</html>
