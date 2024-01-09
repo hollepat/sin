@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,4 +22,14 @@ public class Group {
 
         @Column(name = "groupBelief")
         private Belief groupBelief;
+
+        @OneToMany(mappedBy = "group")
+        private List<Hero> heroes;
+
+        public void addHero(Hero hero){
+                if (heroes == null) {
+                        heroes = new ArrayList<>();
+                }
+                heroes.add(hero);
+        }
 }
