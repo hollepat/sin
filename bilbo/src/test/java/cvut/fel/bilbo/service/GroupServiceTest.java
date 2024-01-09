@@ -3,7 +3,6 @@ package cvut.fel.bilbo.service;
 import cvut.fel.bilbo.entity.Belief;
 import cvut.fel.bilbo.entity.Group;
 import cvut.fel.bilbo.entity.Hero;
-import cvut.fel.bilbo.exception.FieldMissingException;
 import cvut.fel.bilbo.exception.NotFoundException;
 import cvut.fel.bilbo.repository.GroupRepository;
 import cvut.fel.bilbo.repository.HeroRepository;
@@ -60,7 +59,7 @@ public class GroupServiceTest {
     public void addHeroToGroupError() {
 
             Hero hero = new Hero();
-            hero.setName("Bilbo");
+            hero.setName("Bilbo11");
             hero.setId(1L);
             hero.setStrength(100);
             hero.setMagic(100);
@@ -70,12 +69,12 @@ public class GroupServiceTest {
 
             Group group = new Group();
             group.setId(1L);
-            group.setName("Fellowship");
+            group.setName("Fellowship11");
             group.setGroupBelief(Belief.GOOD);
             groupRepository.save(group);
 
             // Act
-            boolean result = service.addHeroToGroup(2L, group.getId());
+            service.addHeroToGroup(2L, group.getId());
 
             fail("Exception not thrown.");
     }

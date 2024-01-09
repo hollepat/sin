@@ -44,14 +44,14 @@ public class BattleServiceTest {
         // Arrange
         Group groupA = new Group();
         groupA.setId(1L);
-        groupA.setName("Fellowship");
+        groupA.setName("Fellowship10");
         groupA.setGroupBelief(Belief.GOOD);
         groupA.setHeroes(generateFelloship());
         groupRepository.save(groupA);
 
         Group groupB = new Group();
         groupB.setId(2L);
-        groupB.setName("SauronBand");
+        groupB.setName("SauronBand10");
         groupB.setGroupBelief(Belief.EVIL);
         groupB.setHeroes(generateSauron());
         groupRepository.save(groupB);
@@ -70,7 +70,7 @@ public class BattleServiceTest {
         // Arrange
         Group groupA = new Group();
         groupA.setId(1L);
-        groupA.setName("Fellowship");
+        groupA.setName("Fellowship4");
         groupA.setGroupBelief(Belief.GOOD);
         groupA.setHeroes(generateFelloship());
         groupRepository.save(groupA);
@@ -98,7 +98,7 @@ public class BattleServiceTest {
 
     private List<Hero> generateFelloship() {
         Hero hero1 = new Hero();
-        hero1.setName("Bilbo");
+        hero1.setName("Bilbo5");
         hero1.setStrength(100);
         hero1.setMagic(100);
         hero1.setWill(100);

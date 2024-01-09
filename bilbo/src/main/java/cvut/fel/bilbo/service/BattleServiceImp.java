@@ -30,6 +30,7 @@ public class BattleServiceImp implements BattleService {
 
     public Group fight(Long groupAid, Long groupBid, Integer type) {
 
+        logger.info("Fighting groupA: " + groupAid + " groupB: " + groupBid + " type: " + type);
         if (groupAid == null) {
             logger.log(Level.WARNING, "GroupA is not valid");
             throw new FieldMissingException();
@@ -63,7 +64,7 @@ public class BattleServiceImp implements BattleService {
         battle.setGroupBvalue(groupBvalue);
 
         battleRepository.save(battle);
-
+        logger.log(Level.INFO, "Battle win by: " + (groupAvalue > groupBvalue ? groupA.getName() : groupB.getName()));
         return groupAvalue > groupBvalue ? groupA : groupB;
     }
 

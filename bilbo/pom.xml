@@ -66,19 +66,6 @@
             <version>1.4.2.Final</version>
         </dependency>
 
-        <!--	SpringFox	-->
-<!--        <dependency>-->
-<!--            <groupId>io.springfox</groupId>-->
-<!--            <artifactId>springfox-swagger2</artifactId>-->
-<!--            <version>3.0.0</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>io.springfox</groupId>-->
-<!--            <artifactId>springfox-swagger-ui</artifactId>-->
-<!--            <version>3.0.0</version>-->
-<!--        </dependency>-->
-
         <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -105,13 +92,6 @@
             <artifactId>postgresql</artifactId>
             <version>42.5.4</version>
         </dependency>
-
-        <!-- liquibase -->
-<!--        <dependency>-->
-<!--            <groupId>org.liquibase</groupId>-->
-<!--            <artifactId>liquibase-core</artifactId>-->
-<!--            <version>4.19.0</version>-->
-<!--        </dependency>-->
 
         <!-- hazelcast -->
         <dependency>

@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "heroes")
-@Setter @Getter @ToString
+@Setter @Getter
 public class Hero {
 
     @Id
@@ -34,4 +34,16 @@ public class Hero {
     @JoinColumn(name = "group_id")
     private Group group;
 
+    @Override
+    public String toString() {
+        return "Hero{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", belief=" + belief +
+                ", strength=" + strength +
+                ", magic=" + magic +
+                ", will=" + will +
+                ", group=" + group.getId() +
+                '}';
+    }
 }
