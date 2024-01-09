@@ -28,6 +28,14 @@ public class BattleServiceImp implements BattleService {
         this.battleRepository = battleRepository;
     }
 
+    /**
+     * Method for fighting between two groups
+     *
+     * @param groupAid id of group A
+     * @param groupBid id of group B
+     * @param type     type of battle
+     * @return winner group
+     */
     public Group fight(Long groupAid, Long groupBid, Integer type) {
 
         logger.info("Fighting groupA: " + groupAid + " groupB: " + groupBid + " type: " + type);
@@ -68,6 +76,13 @@ public class BattleServiceImp implements BattleService {
         return groupAvalue > groupBvalue ? groupA : groupB;
     }
 
+    /**
+     * Method for getting value of group
+     *
+     * @param group group
+     * @param type  type of battle
+     * @return value of group
+     */
     private int getValue(Group group, Integer type) {
         int value = 0;
         switch (type) {

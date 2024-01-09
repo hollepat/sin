@@ -1,0 +1,10 @@
+cvut.fel.bilbo
+cvut.fel.bilbo.config
+cvut.fel.bilbo.controller
+cvut.fel.bilbo.controller.config
+cvut.fel.bilbo.controller.interceptors
+cvut.fel.bilbo.dto
+cvut.fel.bilbo.entity
+cvut.fel.bilbo.exception
+cvut.fel.bilbo.repository
+cvut.fel.bilbo.service

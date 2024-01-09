@@ -29,6 +29,13 @@ public class GroupServiceImp implements GroupService {
         this.heroRepository = heroRepository;
     }
 
+    /**
+     * Method for adding hero to group
+     *
+     * @param heroId  id of hero
+     * @param groupId id of group
+     * @return true if hero was added to group
+     */
     public boolean addHeroToGroup(Long heroId, Long groupId) {
 
         logger.log(Level.INFO, "Adding hero with id: " + heroId + " to group with id: " + groupId);

@@ -27,6 +27,12 @@ public class HeroServiceImp implements HeroService{
         this.groupRepository = groupRepository;
     }
 
+    /**
+     * Method for getting hero by id
+     *
+     * @param id id of hero
+     * @return hero
+     */
     public Hero getById(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("Id is null");
@@ -37,6 +43,13 @@ public class HeroServiceImp implements HeroService{
         return hero;
     }
 
+    /**
+     * Method for updating hero
+     *
+     * @param id      id of hero
+     * @param newName new name of hero
+     * @return true if hero was updated
+     */
     public boolean updateHero(Long id, String newName) {
         logger.info("Updating hero with id: " + id + " to name: " + newName);
         if (id == null) {
@@ -49,12 +62,23 @@ public class HeroServiceImp implements HeroService{
         return true;
     }
 
+    /**
+     * Method for getting all heroes
+     *
+     * @return list of heroes
+     */
     public List<Hero> getAll() {
         List<Hero> heroes = (List<Hero>) heroRepository.findAll();
         heroes.forEach(System.out::println);
         return heroes;
     }
 
+    /**
+     * Method for adding hero to group
+     *
+     * @param heroDTO  hero data transfer object
+     * @return true if hero was added to group
+     */
     public Boolean addHero(HeroDTO heroDTO) {
         logger.info("Adding heroDTO: " + heroDTO);
         if (heroDTO == null) {
