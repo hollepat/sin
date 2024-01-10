@@ -1,7 +1,5 @@
 package cvut.fel.bilbo.dto;
 
-import cvut.fel.bilbo.entity.Belief;
-import cvut.fel.bilbo.entity.Group;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

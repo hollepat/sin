@@ -28,4 +28,5 @@ public class HeroController {
     public ResponseEntity<Boolean> addHero(@RequestBody HeroDTO hero) {
         return ResponseEntity.ok(heroServiceImp.addHero(hero));
     }
+
 }
