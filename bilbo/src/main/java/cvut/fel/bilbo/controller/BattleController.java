@@ -19,7 +19,7 @@ public class BattleController {
 
 
     @PostMapping("/fight/groupA/{groupAid}/groupB/{groupBid}")
-    public ResponseEntity<GroupDTO> createBook(@PathVariable Long groupAid, @PathVariable Long groupBid) {
+    public ResponseEntity<GroupDTO> fight(@PathVariable Long groupAid, @PathVariable Long groupBid) {
         Group group = battleService.fight(groupAid, groupBid, 1);
         GroupDTO groupDTO = new GroupDTO(group);
         return ResponseEntity.ok(groupDTO);
